@@ -39,6 +39,8 @@ class auth_plugin_authplain extends DokuWiki_Auth_Plugin {
                 $this->cando['modPass']   = true;
                 $this->cando['modName']   = true;
                 $this->cando['modMail']   = true;
+                $this->cando['modNews']   = true;
+                $this->cando['modNewssecret'] = true;
                 $this->cando['modGroups'] = true;
             }
             $this->cando['getUsers']     = true;
@@ -157,8 +159,12 @@ class auth_plugin_authplain extends DokuWiki_Auth_Plugin {
             $userinfo[$field] = $value;
         }
 
+		if(!isset($userinfo['news'])) $userinfo['news'] = "false";
+		if(!isset($userinfo['newssecret'])) $userinfo['newssecret'] = uniqid();
+
         $groups   = join(',', $userinfo['grps']);
-        $userline = join(':', array($newuser, $userinfo['pass'], $userinfo['name'], $userinfo['mail'], $groups))."\n";
+        $userline = join(':', array($newuser, $userinfo['pass'], $userinfo['name'], $userinfo['mail'], 
+            $userinfo['news'], $userinfo['newssecret'], $groups))."\n";
 
         if(!$this->deleteUsers(array($user))) {
             msg('Unable to modify user data. Please inform the Wiki-Admin', -1);
@@ -312,13 +318,15 @@ class auth_plugin_authplain extends DokuWiki_Auth_Plugin {
             $line = trim($line);
             if(empty($line)) continue;
 
-            $row    = explode(":", $line, 5);
-            $groups = array_values(array_filter(explode(",", $row[4])));
+            $row    = explode(":", $line, 7);
+            $groups = array_values(array_filter(explode(",", $row[6])));
 
             $this->users[$row[0]]['pass'] = $row[1];
             $this->users[$row[0]]['name'] = urldecode($row[2]);
             $this->users[$row[0]]['mail'] = $row[3];
             $this->users[$row[0]]['grps'] = $groups;
+            $this->users[$row[0]]['news'] = $row[4];
+            $this->users[$row[0]]['newssecret'] = $row[5];
         }
     }
 

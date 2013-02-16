@@ -829,6 +829,9 @@ function updateprofile() {
     $changes['pass'] = $INPUT->post->str('newpass');
     $changes['name'] = $INPUT->post->str('fullname');
     $changes['mail'] = $INPUT->post->str('email');
+    $changes['news'] = $INPUT->post->bool('news');
+    if($changes['news']===true) $changes['news'] = "true";
+    if($changes['news']===false) $changes['news'] = "false";
 
     // check misspelled passwords
     if($changes['pass'] != $INPUT->post->str('passchk')) {
@@ -858,6 +861,7 @@ function updateprofile() {
     if(!$auth->canDo('modName')) unset($changes['name']);
     if(!$auth->canDo('modMail')) unset($changes['mail']);
     if(!$auth->canDo('modPass')) unset($changes['pass']);
+    if(!$auth->canDo('modNews')) unset($changes['news']);
 
     // anything to do?
     if(!count($changes)) {

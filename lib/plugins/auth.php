@@ -27,6 +27,7 @@ class DokuWiki_Auth_Plugin extends DokuWiki_Plugin {
         'modPass'     => false, // can passwords be changed?
         'modName'     => false, // can real names be changed?
         'modMail'     => false, // can emails be changed?
+        'modNews'     => false, // can emails be changed?
         'modGroups'   => false, // can groups be changed?
         'getUsers'    => false, // can a (filtered) list of users be retrieved?
         'getUserCount'=> false, // can the number of users be retrieved?
@@ -74,16 +75,17 @@ class DokuWiki_Auth_Plugin extends DokuWiki_Plugin {
                 // can at least one of the user's properties be changed?
                 return ($this->cando['modPass'] ||
                     $this->cando['modName'] ||
-                    $this->cando['modMail']);
+                    $this->cando['modMail'] ||
+                    $this->cando['modNews']);
                 break;
             case 'UserMod':
                 // can at least anything be changed?
                 return ($this->cando['modPass'] ||
                     $this->cando['modName'] ||
                     $this->cando['modMail'] ||
+                    $this->cando['modNews'] ||
                     $this->cando['modLogin'] ||
-                    $this->cando['modGroups'] ||
-                    $this->cando['modMail']);
+                    $this->cando['modGroups']);
                 break;
             default:
                 // print a helping message for developers

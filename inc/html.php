@@ -1340,6 +1340,7 @@ function html_updateprofile(){
 
     $fullname = $INPUT->post->str('fullname', $INFO['userinfo']['name'], true);
     $email = $INPUT->post->str('email', $INFO['userinfo']['mail'], true);
+    $news = $INPUT->post->bool('news', $INFO['userinfo']['news'], true);
     print '<div class="centeralign">'.NL;
     $form = new Doku_Form(array('id' => 'dw__register'));
     $form->startFieldset($lang['profile']);
@@ -1353,6 +1354,10 @@ function html_updateprofile(){
     if (!$auth->canDo('modMail')) $attr['disabled'] = 'disabled';
     $form->addElement(form_makeTextField('email', $email, $lang['email'], '', 'block', $attr));
     $form->addElement(form_makeTag('br'));
+	$attr = array();
+	if (!$auth->canDo('modNews')) $attr['disabled'] = 'disabled';
+	$form->addElement(form_makeCheckboxField('news', $news, "Receive newsletter", '', 'block', $attr));
+
     if ($auth->canDo('modPass')) {
         $form->addElement(form_makePasswordField('newpass', $lang['newpass'], '', 'block', array('size'=>'50')));
         $form->addElement(form_makePasswordField('passchk', $lang['passchk'], '', 'block', array('size'=>'50')));

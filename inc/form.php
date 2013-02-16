@@ -496,6 +496,9 @@ function form_makeCheckboxField($name, $value='1', $label=null, $id='', $class='
     if (is_null($value) || $value=='') $value='0';
     $elem = array('_elem'=>'checkboxfield', '_text'=>$label, '_class'=>$class,
                         'id'=>$id, 'name'=>$name, 'value'=>$value);
+	if($value==1 or $value=="true")
+		$elem['checked']='true';
+
     return array_merge($elem, $attrs);
 }
 

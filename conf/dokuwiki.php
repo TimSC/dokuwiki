@@ -19,7 +19,7 @@ $conf['lang']        = 'en';              //your language
 $conf['template']    = 'dokuwiki';         //see lib/tpl directory
 $conf['tagline']     = '';                //tagline in header (if template supports it)
 $conf['sidebar']     = 'sidebar';         //name of sidebar in root namespace (if template supports it)
-$conf['license']     = 'cc-by-nc-sa';     //see conf/license.php
+$conf['license']     = 'kinatomic';       //see conf/license.php
 $conf['savedir']     = './data';          //where to store all the files
 $conf['basedir']     = '';                //absolute dir from serveroot - blank for autodetection
 $conf['baseurl']     = '';                //URL to server including protocol - blank for autodetect
@@ -107,9 +107,9 @@ $conf['subscribers'] = 0;                //enable change notice subscription sup
 $conf['subscribe_time'] = 24*60*60;      //Time after which digests / lists are sent (in sec, default 1 day)
                                          //Should be smaller than the time specified in recent_days
 $conf['notify']      = '';               //send change info to this email (leave blank for nobody)
-$conf['registernotify'] = '';            //send info about newly registered users to this email (leave blank for nobody)
-$conf['mailfrom']    = '';               //use this email when sending mails
-$conf['mailprefix']  = '';               //use this as prefix of outgoing mails
+$conf['registernotify'] = 'info@kinatomic.com';            //send info about newly registered users to this email (leave blank for nobody)
+$conf['mailfrom']    = 'info@kinatomic.com';               //use this email when sending mails
+$conf['mailprefix']  = 'Kinatomic';               //use this as prefix of outgoing mails
 $conf['htmlmail']    = 1;                //send HTML multipart mails
 
 /* Syndication Settings */

@@ -33,4 +33,7 @@ $license['cc-by-nc-sa'] = array(
     'name' => 'CC Attribution-Noncommercial-Share Alike 3.0 Unported',
     'url'  => 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
 );
-
+$license['kinatomic'] = array(
+    'name' => '(C) Kinatomic Technology, 2013',
+    'url'  => 'http://kinatomic.com',
+);

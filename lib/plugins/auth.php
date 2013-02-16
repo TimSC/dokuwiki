@@ -248,7 +248,7 @@ class DokuWiki_Auth_Plugin extends DokuWiki_Plugin {
      * @param  null|array $grps
      * @return bool|null
      */
-    public function createUser($user, $pass, $name, $mail, $grps = null) {
+    public function createUser($user, $pass, $name, $mail, $news, $grps = null) {
         msg("authorisation method does not allow creation of new users", -1);
         return null;
     }

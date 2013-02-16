@@ -104,7 +104,7 @@ class auth_plugin_authplain extends DokuWiki_Auth_Plugin {
      * @param array  $grps
      * @return bool|null|string
      */
-    public function createUser($user, $pwd, $name, $mail, $grps = null, $news = "false") {
+    public function createUser($user, $pwd, $name, $mail, $news = "false", $grps = null) {
         global $conf;
         global $config_cascade;
 
@@ -118,10 +118,12 @@ class auth_plugin_authplain extends DokuWiki_Auth_Plugin {
 
         // prepare user line
         $groups   = join(',', $grps);
-        $userline = join(':', array($user, $pass, $name, $mail, $news, uniqid(), $groups))."\n";
+        $newssecret = uniqid();
+        $userline = join(':', array($user, $pass, $name, $mail, $news, $newssecret, $groups))."\n";
 
         if(io_saveFile($config_cascade['plainauth.users']['default'], $userline, true)) {
-            $this->users[$user] = compact('pass', 'name', 'mail', 'grps');
+            $this->users[$user] = compact('pass', 'name', 'mail', 'news', 'newssecret', 'grps');
+
             return $pwd;
         }
 

@@ -753,6 +753,9 @@ function register() {
     $email    = trim(preg_replace('/[\x00-\x1f:<>&%,;]+/', '', $INPUT->post->str('email')));
     $pass     = $INPUT->post->str('pass');
     $passchk  = $INPUT->post->str('passchk');
+    $news     = "false";
+    if($INPUT->post->bool('news'))
+        $news = "true"; 
 
     if(empty($login) || empty($fullname) || empty($email)) {
         msg($lang['regmissing'], -1);
@@ -776,7 +779,7 @@ function register() {
     }
 
     //okay try to create the user
-    if(!$auth->triggerUserMod('create', array($login, $pass, $fullname, $email))) {
+    if(!$auth->triggerUserMod('create', array($login, $pass, $fullname, $email, $news))) {
         msg($lang['reguexists'], -1);
         return false;
     }

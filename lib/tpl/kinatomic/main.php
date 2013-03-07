@@ -1,0 +1,293 @@
+<?php
+if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
+@require_once(dirname(__FILE__).'/tpl_functions.php'); /* include hook for template functions */
+
+$showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER['REMOTE_USER'] );
+
+echo '<?xml version="1.0" encoding="UTF-8"?>';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>"
+  lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>" class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+<?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]
+</title>
+
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <?php tpl_metaheaders() ?>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
+    <?php tpl_includeFile('meta.html') ?>
+</head>
+
+<body>
+
+<!-- Start top block -->
+
+<div id="top-block">
+<div class="main-column">
+
+<!--<div class="account-bar">
+<a href="#"><img class="social-icon" src="social-blogger.png" alt="Blogger Icon"/></a>
+<a href="#"><img class="social-icon" src="social-facebook.png" alt="Facebook Icon"/></a>
+<a href="#"><img class="social-icon" src="social-google.png" alt="Google Icon"/></a>
+<a href="#"><img class="social-icon" src="social-rss.png" alt="RSS Feed Icon"/></a>
+</div>-->
+
+<div style="clear:both;"></div>
+
+<div class="top-block-menu"><a href="#" class="company-logo">Kinatomic logo</a> <a href="#" class="company-wordmark">Kinatomic Technology</a> 
+<a href="#" class="top-button">Home</a> 
+<a href="#" class="top-inactive-button">Products</a> 
+<a href="#" class="top-inactive-button">Services</a>  
+<a href="#" class="top-inactive-button">Knowledge Base</a>  
+<a href="#" class="top-inactive-button">Support</a>  
+<a href="#" class="top-inactive-button">Blog</a>  
+<a href="#" class="top-inactive-button">Shop</a>
+</div>
+</div>
+</div> <!-- end of top block -->
+
+<!-- Start of body block -->
+
+    <?php /* with these Conditional Comments you can better address IE issues in CSS files,
+             precede CSS rules by #IE6 for IE6, #IE7 for IE7 and #IE8 for IE8 (div closes at the bottom) */ ?>
+    <!--[if IE 6 ]><div id="IE6"><![endif]--><!--[if IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+
+    <?php /* the "dokuwiki__top" id is needed somewhere at the top, because that's where the "back to top" button/link links to */ ?>
+    <?php /* classes mode_<action> are added to make it possible to e.g. style a page differently if it's in edit mode,
+         see http://www.dokuwiki.org/devel:action_modes for a list of action modes */ ?>
+    <?php /* .dokuwiki should always be in one of the surrounding elements (e.g. plugins and templates depend on it) */ ?>
+    <div id="dokuwiki__site"><div id="dokuwiki__top"
+        class="dokuwiki site mode_<?php echo $ACT ?>">
+        <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
+        <?php tpl_includeFile('header.html') ?>
+
+        <!-- ********** HEADER ********** -->
+        <div id="dokuwiki__header"><div class="pad">
+
+            <div class="headings">
+                <div id="graphic-block">
+				<div class="graphic-standard-page-main">
+				<div class="main-column">
+				<div id="graphic-block-width-limited">
+				<div class="graphic-text-standard-page"><h2 class="graphic-text-title">
+				<?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h2>
+				</div>
+				</div>
+				</div>
+				</div>
+				<div id="graphic-under"></div>
+				</div> <!-- End of graphic block -->
+
+
+
+                <?php /* how to insert logo instead (if no CSS image replacement technique is used):
+                        upload your logo into the data/media folder (root of the media manager) and replace 'logo.png' accordingly:
+                        tpl_link(wl(),'<img src="'.ml('logo.png').'" alt="'.$conf['title'].'" />','id="dokuwiki__top" accesskey="h" title="[H]"') */ ?>
+                <?php if ($conf['tagline']): ?>
+                    <p class="claim"><?php echo $conf['tagline'] ?></p>
+                <?php endif ?>
+
+                <ul class="a11y skip">
+                    <li><a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a></li>
+                </ul>
+                <div class="clearer"></div>
+            </div>
+
+            <div class="tools">
+                <!-- USER TOOLS -->
+                <?php if ($conf['useacl'] && $showTools): ?>
+                    <div id="dokuwiki__usertools">
+                        <h3 class="a11y"><?php echo $lang['user_tools'] ?></h3>
+                        <ul>
+                            <?php /* the optional second parameter of tpl_action() switches between a link and a button,
+                                     e.g. a button inside a <li> would be: tpl_action('edit', 0, 'li') */
+                                if ($_SERVER['REMOTE_USER']) {
+                                    echo '<li class="user">';
+                                    tpl_userinfo(); /* 'Logged in as ...' */
+                                    echo '</li>';
+                                }
+                                tpl_action('admin', 1, 'li');
+                                _tpl_action('userpage', 1, 'li');
+                                tpl_action('profile', 1, 'li');
+                                tpl_action('register', 1, 'li'); /* DW versions < 2011-02-20 need to use _tpl_action('register', 1, 'li') */
+                                tpl_action('login', 1, 'li');
+                            ?>
+                        </ul>
+                    </div>
+                <?php endif ?>
+
+                <!-- SITE TOOLS -->
+                <div id="dokuwiki__sitetools">
+                    <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>
+                    <?php tpl_searchform() ?>
+                    <ul>
+                        <?php
+                            tpl_action('recent', 1, 'li');
+                            tpl_action('media', 1, 'li');
+                            tpl_action('index', 1, 'li');
+                        ?>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="clearer"></div>
+
+            <!-- BREADCRUMBS -->
+            <?php if($conf['breadcrumbs']){ ?>
+                <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
+            <?php } ?>
+            <?php if($conf['youarehere']){ ?>
+                <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
+            <?php } ?>
+
+            <div class="clearer"></div>
+            <hr class="a11y" />
+        </div></div><!-- /header -->
+
+<div id="body-block">
+<div class="main-column">
+<div id="body-block-column">
+
+
+        <div class="wrapper">
+
+            <!-- ********** ASIDE ********** -->
+            <div id="dokuwiki__aside"><div class="pad include">
+                <?php tpl_includeFile('sidebarheader.html') ?>
+                <?php tpl_include_page($conf['sidebar'], 1, 1) /* includes the nearest sidebar page */ ?>
+                <?php tpl_includeFile('sidebarfooter.html') ?>
+                <div class="clearer"></div>
+            </div></div><!-- /aside -->
+
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad">
+                <?php tpl_flush() /* flush the output buffer */ ?>
+                <?php tpl_includeFile('pageheader.html') ?>
+
+                <div class="page">
+                    <!-- wikipage start -->
+                    <?php tpl_content() /* the main content */ ?>
+                    <!-- wikipage stop -->
+                    <div class="clearer"></div>
+                </div>
+
+                <?php tpl_flush() ?>
+                <?php tpl_includeFile('pagefooter.html') ?>
+            </div></div><!-- /content -->
+
+            <div class="clearer"></div>
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <?php if ($showTools): ?>
+                <div id="dokuwiki__pagetools">
+                    <h3 class="a11y"><?php echo $lang['page_tools'] ?></h3>
+                    <ul>
+                        <?php
+                            tpl_action('edit', 1, 'li');
+                            _tpl_action('discussion', 1, 'li');
+                            tpl_action('revisions', 1, 'li');
+                            tpl_action('backlink', 1, 'li');
+                            tpl_action('subscribe', 1, 'li');
+                            tpl_action('revert', 1, 'li');
+                            tpl_action('top', 1, 'li');
+                        ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </div><!-- /wrapper -->
+
+        <!-- ********** FOOTER ********** -->
+        <div id="dokuwiki__footer"><div class="pad">
+            <div class="doc"><?php tpl_pageinfo() /* 'Last modified' etc */ ?></div>
+            <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+        </div></div><!-- /footer -->
+
+        <?php tpl_includeFile('footer.html') ?>
+    </div></div><!-- /site -->
+
+    <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
+    <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
+
+<div style="clear:both;"></div>
+</div>
+
+</div>
+</div> <!-- End of body block -->
+
+<!-- Start of footer -->
+
+<div id="footer-block">
+
+<!-- Start of footer top -->
+
+<div id="footer-top">
+<div class="main-column">
+<div id="subscribe-area">
+<span id="subscribe-text">Subscribe to Our Newsletter</span>
+<form class="footer-form" action="POST">
+<input type="text" class="footer-form-field" name="firstname" value="Name"/> <input type="text" class="footer-form-field" name="lastname" value="Email"/> <input class="footer-form-button" type="submit" value="Submit"/>
+</form>
+</div>
+</div>
+</div> <!-- End of footer top -->
+
+<!-- Start of footer middle -->
+
+<div id="footer-middle">
+<div class="main-column">
+
+<div class="footer-column">
+<h3 class="footer-titles">About Kinatomic</h3>
+<p class="footer-para">Lorem Ipsum Dolor<br/>
+USA, AB10 6XF<br/>
+Phone: +44(0)01224 576888<br/>
+Email: info@.com</p>
+</div>
+
+<div class="footer-column">
+<h3 class="footer-titles">Contact</h3>
+<p class="footer-para">2500 City West Blvd, Suite 300<br/>
+Houston, TX 77042<br/>
+Phone: (713) 267 2278</p>
+</div>
+
+
+<div class="footer-column">
+<h3 class="footer-titles">Web Sites</h3>
+<p class="footer-para">Web builder<br/>
+Custom web sites<br/>
+SSL certificates<br/>
+Logo design</p>
+</div>
+
+<div id="footer-icon-area">
+<img src="lib/tpl/kinatomic/images/Kinatomic-Logo-white-out-logoonly105px.png" alt="Kinatomic Technology Logo"/>
+<img src="lib/tpl/kinatomic/images/Kinatomic-Logo-white-out-markonly170px.png" alt="Kinatomic Technology Word Mark"/>
+</div>
+
+<div style="clear:both;"></div>
+
+</div>
+</div> <!-- End of footer middle -->
+
+<!-- Start of footer bottom -->
+
+<div id="footer-bottom">
+<div class="main-column">
+<div id="footer-bottom-left"><a href="#" class="footer-bottom-left-link">Privacy Policy</a> | <a href="#" class="footer-bottom-left-link">Ethics Policy</a></div>
+<div id="footer-bottom-right">Copyright &copy; Kinatomic Technology, 2013. All rights reserved.</div>
+<div style="clear:both;"></div>
+</div>
+
+<div id="gutter"></div>
+
+</div> <!-- end of footer bottom -->
+
+</div> <!-- end of footer -->
+</body>
+</html>

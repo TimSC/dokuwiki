@@ -1,0 +1,470 @@
+@font-face
+{
+font-family: Ubuntu;
+src: url('Ubuntu-R.ttf');
+}
+
+body
+{
+margin: 0;
+padding: 0;
+}
+
+.main-column
+{
+margin-left:auto;
+margin-right:auto;
+width:1018px;
+font-family:Ubuntu, Maven Pro, Sans;
+
+}
+
+.account-bar
+{
+float:right;
+margin: 0 0 0 0;
+}
+
+.social-icon
+{
+margin: 2px 2px 2px 2px;
+}
+
+.top-block-menu
+{
+
+}
+
+a.company-logo
+{
+width:104px;
+height:79px;
+background-image: url('images/logoicon104px.png');
+background-repeat:no-repeat;
+display:inline-block;
+text-indent: 100%;
+white-space: nowrap;
+overflow: hidden;
+vertical-align: middle;	
+}
+
+a.company-wordmark
+{
+width:170px;
+height:41px;
+margin-right:90px;
+background-image: url('images/wordmark170px.png');
+background-repeat:no-repeat;
+display:inline-block;
+text-indent: 100%;
+white-space: nowrap;
+overflow: hidden;
+vertical-align: middle;	
+}
+
+.graphic-main
+{
+background-color:#070605;
+height:361px;
+color: #ffffff;
+}
+
+.graphic-standard-page-main
+{
+background-color:#070605;
+height:50px;
+color: #ffffff;
+}
+
+#graphic-block-width-limited
+{
+background-image:url('images/graphic.jpg');
+background-repeat:no-repeat;
+background-position:right center;
+}
+
+.graphic-text
+{
+	margin-left:10px;
+	width: 500px;
+	font-size: 150%;
+	padding-top: 80px;
+}
+
+.graphic-text-standard-page
+{
+	margin-left:10px;
+	width: 500px;
+	height: 50px;
+	font-size: 150%;
+}
+
+.graphic-text-title
+{
+	font-weight:normal;
+}
+
+.graphic-text-title-mini
+{
+	font-weight:normal;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;	
+}
+
+span.button
+{
+background-color: #ed6710;
+background-image: url('images/button-gradient.png');
+background-repeat: repeat-x;
+font-size:80%;
+}
+
+div.button
+{
+height: 36px;
+}
+
+#graphic-buttons
+{
+	padding-top:40px;
+	padding-bottom:50px;
+}
+
+#graphic-under
+{
+background-image:url("images/entry_final_crop2b.png");
+background-repeat:repeat-x;
+height:11px;
+}
+
+#body-block
+{
+margin-top:20px;
+}
+
+#body-block-column
+{
+width:960px;
+margin-left:29px;
+margin-right:29px;
+font-size:90%;
+}
+
+.body-col
+{
+width:300px;
+margin-left:10px;
+margin-right:10px;
+float:left;
+color:#777777;
+}
+
+.body-block-title
+{
+text-transform:uppercase;
+font-size:90%;
+padding-left:45px;
+padding-top:8px;
+min-height:34px;
+}
+
+#title-emotion
+{
+background-image:url('images/icon-human.png');
+background-repeat: no-repeat;
+}
+
+#title-gaze
+{
+background-image:url('images/icon-eye.png');
+background-repeat: no-repeat;
+}
+
+#title-product
+{
+background-image:url('images/icon-jigsaw.png');
+background-repeat: no-repeat;
+}
+
+.body-block-hr
+{
+	margin-top:30px;
+	background-color:#dedede;
+	height:2px;
+}
+
+h2.para-title
+{
+	text-transform: uppercase;
+	font-size:90%;
+	padding: 10px 0px 10px 0px;
+}
+
+div.body-button1
+{
+	background-color: #f0f0f0;
+	background-image: url('images/icon-camera.png');
+	background-repeat: no-repeat;
+	height:32px;
+	padding-top:20px;
+	padding-left:100px;
+	margin-top:2px;
+}
+
+div.body-button2
+{
+	background-color: #f0f0f0;
+	background-image: url('images/icon-movie.png');
+	background-repeat: no-repeat;
+	height:32px;
+	padding-top:20px;
+	padding-left:100px;
+	margin-top:2px;
+}
+
+div.body-button3
+{
+	background-color: #f0f0f0;
+	background-image: url('images/icon-pad.png');
+	background-repeat: no-repeat;
+	height:32px;
+	padding-top:20px;
+	padding-left:100px;
+	margin-top:2px;
+}
+
+a.a-body-button
+{
+	text-transform: uppercase;
+	text-decoration:none;
+	color: #777777;
+}
+
+a.a-body-button:hover {
+	color: #a0a0a0;
+}
+
+#footer-top
+{
+	margin-top:30px;
+	background-color:#2a72b1;
+	background-image:url("images/entry_final_crop5back");
+	background-repeat:repeat-x;
+	font-size:140%;
+	color:#ffffff;
+	padding-left: 130px;
+}
+
+#subscribe-area
+{
+	padding-top: 5px;
+	height: 36px;
+}
+
+#subscribe-text
+{
+	padding-top:5px;
+	display:inline-block;
+}
+
+.footer-form
+{
+	display: inline-block;
+	float:right;
+	margin-right:105px;
+}
+
+.footer-form-field
+{
+	color:#aaaaaa;
+	font-style:italic;
+}
+
+.footer-form-button
+{
+    border: none;
+    background: url('images/form-submit.png') no-repeat top left;
+    padding: 2px 8px;
+	color: #ffffff;
+	font-style:italic;
+}
+
+.footer-form-button:hover
+{
+    border: none;
+    background: url('images/form-submit-hover.png') no-repeat top left;
+    padding: 2px 8px;
+	color: #ffffff;
+	font-style:italic;
+}
+
+
+#footer-middle
+{
+	background-image:url("images/entry_final_crop6back.png");
+	background-repeat:repeat;
+	color: #ffffff;
+	padding-left: 130px;
+	font-size:90%;
+}
+
+.footer-titles
+{
+	margin: 0 0 0 0;
+	text-transform: uppercase;
+	padding-top: 30px;
+}
+
+.footer-column
+{
+	float:left;
+	width:205px;
+}
+
+.footer-para
+{
+	line-height:200%;
+	margin-top:5px;
+	color:#c5c5c5;
+}
+
+.footer-link
+{
+	color: #c5c5c5;
+	text-decoration: none;
+}
+
+.footer-link:hover
+{
+	color: #2a72b1;
+}
+
+
+#footer-bottom
+{
+background-color:#2d2d2d;
+color: #ffffff;
+font-size:70%;
+}
+
+#footer-bottom-left
+{
+float:left;
+padding-left: 65px;
+padding-top: 20px;
+padding-bottom: 20px;
+}
+
+.footer-bottom-left-link
+{
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.footer-bottom-left-link:hover
+{
+	text-decoration: none;
+	color: #2a72b1;
+}
+
+#footer-bottom-right
+{
+float:right;
+padding-top: 20px;
+padding-right: 50px;
+padding-bottom: 20px;
+}
+
+#footer-icon-area
+{
+	float:right;
+	padding-right:120px;
+	padding-top:60px;
+	vertical-align:text-top;
+	height:100px;
+}
+
+#gutter
+{
+	background-image:url("images/entry_final_crop6back.png");
+	background-repeat:repeat;
+	height:5px;
+}
+
+.button {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc7312), color-stop(1, #dc570f) );
+background:-moz-linear-gradient( center top, #fc7312 5%, #dc570f 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc7312', endColorstr='#dc570f');
+background-color:#fc7312;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;
+display:inline-block;
+color:#ffffff;
+font-size:15px;
+font-weight:normal;
+padding:6px 15px;
+text-decoration:none;
+}.button:hover {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dc570f), color-stop(1, #fc7312) );
+background:-moz-linear-gradient( center top, #dc570f 5%, #fc7312 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dc570f', endColorstr='#fc7312');
+background-color:#dc570f;
+}.button:active {
+position:relative;
+top:1px;
+}
+
+.top-button {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc7312), color-stop(1, #dc570f) );
+background:-moz-linear-gradient( center top, #fc7312 5%, #dc570f 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc7312', endColorstr='#dc570f');
+background-color:#fc7312;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;
+display:inline-block;
+color:#ffffff;
+font-size:85%;;
+font-weight:normal;
+padding:6px 10px;
+text-decoration:none;
+text-transform:uppercase;
+}.top-button:hover {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dc570f), color-stop(1, #fc7312) );
+background:-moz-linear-gradient( center top, #dc570f 5%, #fc7312 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dc570f', endColorstr='#fc7312');
+background-color:#dc570f;
+color:#ffffff;
+}.top-button:active {
+position:relative;
+top:1px;
+}
+
+.top-inactive-button {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #ffffff) );
+background:-moz-linear-gradient( center top, #ffffff 5%, #ffffff 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff');
+background-color:#ffffff;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;
+display:inline-block;
+color:#000000;
+font-size:85%;;
+font-weight:normal;
+padding:6px 10px;
+text-decoration:none;
+text-transform:uppercase;
+}.top-inactive-button:hover {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dc570f), color-stop(1, #fc7312) );
+background:-moz-linear-gradient( center top, #dc570f 5%, #fc7312 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dc570f', endColorstr='#fc7312');
+background-color:#dc570f;
+color:#ffffff;
+}.top-inactive-button:active {
+position:relative;
+top:1px;
+}
+
+/* This imageless css button was generated by CSSButtonGenerator.com */

@@ -83,6 +83,20 @@ function media_metasave($id,$auth,$data){
 }
 
 /**
+ * Check if a media item is public (eg, external URL or readable by @ALL)
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @param string $id  the media ID or URL
+ * @return bool
+ */
+function media_ispublic($id){
+    if(preg_match('/^https?:\/\//i',$id)) return true;
+    $id = cleanID($id);
+    if(auth_aclcheck(getNS($id).':*', '', array()) >= AUTH_READ) return true;
+    return false;
+}
+
+/**
  * Display the form to edit image meta data
  *
  * @author Andreas Gohr <andi@splitbrain.org>
@@ -237,8 +251,7 @@ function media_upload_xhr($ns,$auth){
     $realSize = stream_copy_to_stream($input, $target);
     fclose($target);
     fclose($input);
-    if ($realSize != (int)$_SERVER["CONTENT_LENGTH"]){
-        unlink($target);
+    if (isset($_SERVER["CONTENT_LENGTH"]) && ($realSize != (int)$_SERVER["CONTENT_LENGTH"])){
         unlink($path);
         return false;
     }
@@ -1687,17 +1700,35 @@ function media_nstree($ns){
     $ns  = cleanID($ns);
     if(empty($ns)){
         global $ID;
-        $ns = dirname(str_replace(':','/',$ID));
-        if($ns == '.') $ns ='';
+        $ns = (string)getNS($ID);
     }
-    $ns  = utf8_encodeFN(str_replace(':','/',$ns));
+
+    $ns_dir  = utf8_encodeFN(str_replace(':','/',$ns));
 
     $data = array();
-    search($data,$conf['mediadir'],'search_index',array('ns' => $ns, 'nofiles' => true));
+    search($data,$conf['mediadir'],'search_index',array('ns' => $ns_dir, 'nofiles' => true));
 
     // wrap a list with the root level around the other namespaces
     array_unshift($data, array('level' => 0, 'id' => '', 'open' =>'true',
                                'label' => '['.$lang['mediaroot'].']'));
+
+    // insert the current ns into the hierarchy if it isn't already part of it
+    $ns_parts = explode(':', $ns);
+    $tmp_ns = '';
+    $pos = 0;
+    foreach ($ns_parts as $level => $part) {
+        if ($tmp_ns) $tmp_ns .= ':'.$part;
+        else $tmp_ns = $part;
+
+        // find the namespace parts or insert them
+        while ($data[$pos]['id'] != $tmp_ns) {
+            if ($pos >= count($data) || ($data[$pos]['level'] <= $level+1 && strnatcmp(utf8_encodeFN($data[$pos]['id']), utf8_encodeFN($tmp_ns)) > 0)) {
+                array_splice($data, $pos, 0, array(array('level' => $level+1, 'id' => $tmp_ns, 'open' => 'true')));
+                break;
+            }
+            ++$pos;
+        }
+    }
 
     echo html_buildlist($data,'idx','media_nstree_item','media_nstree_li');
 }
@@ -1878,6 +1909,8 @@ function media_get_from_URL($url,$ext,$cache){
 function media_image_download($url,$file){
     global $conf;
     $http = new DokuHTTPClient();
+    $http->keep_alive = false; // we do single ops here, no need for keep-alive
+
     $http->max_bodysize = $conf['fetchsize'];
     $http->timeout = 25; //max. 25 sec
     $http->header_regexp = '!\r\nContent-Type: image/(jpe?g|gif|png)!i';

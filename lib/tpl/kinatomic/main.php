@@ -45,7 +45,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				<div class="graphic-standard-page-main">
 				<div class="main-column">
 				<div id="graphic-block-width-limited">
-				<div class="graphic-text-standard-page"><h2 class="graphic-text-title">
+				<div class="graphic-text-standard-page"><h2 class="graphic-text-title-mini">
 				<?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h2>
 				</div>
 				</div>
@@ -70,6 +70,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
             <div class="tools">
                 <!-- USER TOOLS -->
                 <?php if ($conf['useacl'] && $showTools): ?>
+				<div class="main-column">
                     <div id="dokuwiki__usertools">
                         <h3 class="a11y"><?php echo $lang['user_tools'] ?></h3>
                         <ul>
@@ -88,9 +89,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
                             ?>
                         </ul>
                     </div>
+				</div>
                 <?php endif ?>
 
                 <!-- SITE TOOLS -->
+				<div class="main-column">
                 <div id="dokuwiki__sitetools">
                     <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>
                     <?php tpl_searchform() ?>
@@ -102,10 +105,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
                         ?>
                     </ul>
                 </div>
+				</div>
 
             </div>
-            <div class="clearer"></div>
 
+			<div class="main-column">
             <!-- BREADCRUMBS -->
             <?php if($conf['breadcrumbs']){ ?>
                 <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
@@ -113,8 +117,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
             <?php if($conf['youarehere']){ ?>
                 <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
             <?php } ?>
+			</div>
 
-            <div class="clearer"></div>
             <hr class="a11y" />
         </div></div><!-- /header -->
 
@@ -126,7 +130,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
                 <?php tpl_includeFile('sidebarheader.html') ?>
                 <?php tpl_include_page($conf['sidebar'], 1, 1) /* includes the nearest sidebar page */ ?>
                 <?php tpl_includeFile('sidebarfooter.html') ?>
-                <div class="clearer"></div>
+                <!--<div class="clearer"></div>-->
             </div></div><!-- /aside -->
 
 <!-- Start of body block -->
@@ -155,7 +159,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
             <!-- PAGE ACTIONS -->
             <?php if ($showTools): ?>
-                <div id="dokuwiki__pagetools">
+			<div class="main-column">
+                <div id="dokuwiki__pagetools" class="tools">
                     <h3 class="a11y"><?php echo $lang['page_tools'] ?></h3>
                     <ul>
                         <?php
@@ -169,21 +174,25 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
                         ?>
                     </ul>
                 </div>
+			</div>
             <?php endif; ?>
+
+
         </div><!-- /wrapper -->
 
-<div style="clear:both;"></div>
+<div class="clearer"></div>
 </div>
 
 </div>
 </div> <!-- End of body block -->
 
         <!-- ********** FOOTER ********** -->
+<div class="main-column">
         <div id="dokuwiki__footer"><div class="pad">
             <div class="doc"><?php tpl_pageinfo() /* 'Last modified' etc */ ?></div>
             <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
         </div></div><!-- /footer -->
-
+</div>
         <?php tpl_includeFile('footer.php') ?>
     </div></div><!-- /site -->
 

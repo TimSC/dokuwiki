@@ -16,7 +16,6 @@ margin-left:auto;
 margin-right:auto;
 width:1018px;
 font-family:Ubuntu, Maven Pro, Sans;
-
 }
 
 .account-bar
@@ -108,7 +107,13 @@ background-position:right center;
 {
 	font-weight:normal;
 	padding: 0 0 0 0;
-	margin: 0 0 0 0;	
+	margin: 0 0 0 0;
+}
+
+.graphic-text-title-mini a
+{
+	text-decoration:none;
+	color:#ffffff;
 }
 
 span.button

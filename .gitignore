@@ -34,6 +34,7 @@
 !/lib/tpl/default
 !/lib/tpl/dokuwiki
 !/lib/tpl/kinatomic
+!/lib/tpl/kinatomic/css
 !/lib/tpl/index.php
 /lib/plugins/*
 !/lib/plugins/authad

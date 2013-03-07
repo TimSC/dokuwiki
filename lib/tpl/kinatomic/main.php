@@ -24,34 +24,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 <body>
 
-<!-- Start top block -->
-
-<div id="top-block">
-<div class="main-column">
-
-<!--<div class="account-bar">
-<a href="#"><img class="social-icon" src="social-blogger.png" alt="Blogger Icon"/></a>
-<a href="#"><img class="social-icon" src="social-facebook.png" alt="Facebook Icon"/></a>
-<a href="#"><img class="social-icon" src="social-google.png" alt="Google Icon"/></a>
-<a href="#"><img class="social-icon" src="social-rss.png" alt="RSS Feed Icon"/></a>
-</div>-->
-
-<div style="clear:both;"></div>
-
-<div class="top-block-menu"><a href="#" class="company-logo">Kinatomic logo</a> <a href="#" class="company-wordmark">Kinatomic Technology</a> 
-<a href="#" class="top-button">Home</a> 
-<a href="#" class="top-inactive-button">Products</a> 
-<a href="#" class="top-inactive-button">Services</a>  
-<a href="#" class="top-inactive-button">Knowledge Base</a>  
-<a href="#" class="top-inactive-button">Support</a>  
-<a href="#" class="top-inactive-button">Blog</a>  
-<a href="#" class="top-inactive-button">Shop</a>
-</div>
-</div>
-</div> <!-- end of top block -->
-
-<!-- Start of body block -->
-
     <?php /* with these Conditional Comments you can better address IE issues in CSS files,
              precede CSS rules by #IE6 for IE6, #IE7 for IE7 and #IE8 for IE8 (div closes at the bottom) */ ?>
     <!--[if IE 6 ]><div id="IE6"><![endif]--><!--[if IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
@@ -63,7 +35,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <div id="dokuwiki__site"><div id="dokuwiki__top"
         class="dokuwiki site mode_<?php echo $ACT ?>">
         <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
-        <?php tpl_includeFile('header.html') ?>
+        <?php tpl_includeFile('header.php') ?>
 
         <!-- ********** HEADER ********** -->
         <div id="dokuwiki__header"><div class="pad">
@@ -81,8 +53,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				</div>
 				<div id="graphic-under"></div>
 				</div> <!-- End of graphic block -->
-
-
 
                 <?php /* how to insert logo instead (if no CSS image replacement technique is used):
                         upload your logo into the data/media folder (root of the media manager) and replace 'logo.png' accordingly:
@@ -148,10 +118,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
             <hr class="a11y" />
         </div></div><!-- /header -->
 
-<div id="body-block">
-<div class="main-column">
-<div id="body-block-column">
-
 
         <div class="wrapper">
 
@@ -162,6 +128,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
                 <?php tpl_includeFile('sidebarfooter.html') ?>
                 <div class="clearer"></div>
             </div></div><!-- /aside -->
+
+<!-- Start of body block -->
+<div id="body-block">
+<div class="main-column">
+<div id="body-block-column">
 
             <!-- ********** CONTENT ********** -->
             <div id="dokuwiki__content"><div class="pad">
@@ -201,93 +172,24 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
             <?php endif; ?>
         </div><!-- /wrapper -->
 
-        <!-- ********** FOOTER ********** -->
-        <div id="dokuwiki__footer"><div class="pad">
-            <div class="doc"><?php tpl_pageinfo() /* 'Last modified' etc */ ?></div>
-            <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
-        </div></div><!-- /footer -->
-
-        <?php tpl_includeFile('footer.html') ?>
-    </div></div><!-- /site -->
-
-    <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
-    <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
-
 <div style="clear:both;"></div>
 </div>
 
 </div>
 </div> <!-- End of body block -->
 
-<!-- Start of footer -->
+        <!-- ********** FOOTER ********** -->
+        <div id="dokuwiki__footer"><div class="pad">
+            <div class="doc"><?php tpl_pageinfo() /* 'Last modified' etc */ ?></div>
+            <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+        </div></div><!-- /footer -->
 
-<div id="footer-block">
+        <?php tpl_includeFile('footer.php') ?>
+    </div></div><!-- /site -->
 
-<!-- Start of footer top -->
-
-<div id="footer-top">
-<div class="main-column">
-<div id="subscribe-area">
-<span id="subscribe-text">Subscribe to Our Newsletter</span>
-<form class="footer-form" action="POST">
-<input type="text" class="footer-form-field" name="firstname" value="Name"/> <input type="text" class="footer-form-field" name="lastname" value="Email"/> <input class="footer-form-button" type="submit" value="Submit"/>
-</form>
-</div>
-</div>
-</div> <!-- End of footer top -->
-
-<!-- Start of footer middle -->
-
-<div id="footer-middle">
-<div class="main-column">
-
-<div class="footer-column">
-<h3 class="footer-titles">About Kinatomic</h3>
-<p class="footer-para">Lorem Ipsum Dolor<br/>
-USA, AB10 6XF<br/>
-Phone: +44(0)01224 576888<br/>
-Email: info@.com</p>
-</div>
-
-<div class="footer-column">
-<h3 class="footer-titles">Contact</h3>
-<p class="footer-para">2500 City West Blvd, Suite 300<br/>
-Houston, TX 77042<br/>
-Phone: (713) 267 2278</p>
-</div>
+    <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
+    <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
 
 
-<div class="footer-column">
-<h3 class="footer-titles">Web Sites</h3>
-<p class="footer-para">Web builder<br/>
-Custom web sites<br/>
-SSL certificates<br/>
-Logo design</p>
-</div>
-
-<div id="footer-icon-area">
-<img src="lib/tpl/kinatomic/images/Kinatomic-Logo-white-out-logoonly105px.png" alt="Kinatomic Technology Logo"/>
-<img src="lib/tpl/kinatomic/images/Kinatomic-Logo-white-out-markonly170px.png" alt="Kinatomic Technology Word Mark"/>
-</div>
-
-<div style="clear:both;"></div>
-
-</div>
-</div> <!-- End of footer middle -->
-
-<!-- Start of footer bottom -->
-
-<div id="footer-bottom">
-<div class="main-column">
-<div id="footer-bottom-left"><a href="#" class="footer-bottom-left-link">Privacy Policy</a> | <a href="#" class="footer-bottom-left-link">Ethics Policy</a></div>
-<div id="footer-bottom-right">Copyright &copy; Kinatomic Technology, 2013. All rights reserved.</div>
-<div style="clear:both;"></div>
-</div>
-
-<div id="gutter"></div>
-
-</div> <!-- end of footer bottom -->
-
-</div> <!-- end of footer -->
 </body>
 </html>

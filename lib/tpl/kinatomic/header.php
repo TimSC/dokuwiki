@@ -17,7 +17,7 @@
 <a href="../products.php" class="<?php if($cat=="products") echo "top-button"; else echo "top-inactive-button"; ?>">Products</a> 
 <a href="../services.php" class="<?php if($cat=="services") echo "top-button"; else echo "top-inactive-button"; ?>">Services</a>  
 <a href="../kb/" class="<?php if($cat=="kb") echo "top-button"; else echo "top-inactive-button"; ?>">Knowledge Base</a>  
-<a href="../support.php" class="<?php if($cat=="support") echo "top-button"; else echo "top-inactive-button"; ?>">Support</a>  
+<a href="../support/" class="<?php if($cat=="support") echo "top-button"; else echo "top-inactive-button"; ?>">Support</a>  
 <a href="../shop.php" class="<?php if($cat=="shop") echo "top-button"; else echo "top-inactive-button"; ?>">Shop</a>
 </div>
 </div>
